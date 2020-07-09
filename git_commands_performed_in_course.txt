@@ -1,0 +1,101 @@
+### Part 1
+git init
+<cd into my D:/ drive>
+mkdir -p udacity_git_course/new_git_project && cd $_
+git init
+git clone https://github.com/udacity/course-git-blog-project
+cd course-git-blog-project
+git status (testing...optional)
+cd /d/udacity_git_course/new_git_project
+cd course-git-blog-project
+git log
+git log --oneline
+q (gets you out of the log)
+git log --stat (shows commits with the files changed)
+git log -p (shows changes made to a file)
+git log -p 50d835d (look at a specific commit changes by adding <SHA> after "-p")
+git log -p 4a60beb
+git log -p --stat (show patch...i.e. change info followed by stats)
+git log -p -w 50d835d (the -w ignores whitespace changes)
+git show fdf5493 (just show most recent commit)
+git log --stat 8aa6668
+
+### Part 2
+
+# Open Project
+<open git>
+cd /d/udacity_git_course/new_git_project
+git init
+
+
+# Stage File
+cd course-git-blog-project
+git add index.html
+git add css/app.css js/app.js
+git commit -m 'some message here'
+
+# See uncommitted changes
+git diff
+
+# Git Ignore
+add specific file names
+or... use astrisk for a file type... e.g. "*.csv"
+blank lines can be used for spacing
+# - marks line as a comment
+* - matches 0 or more characters
+? - matches 1 character
+[abc] - matches a, b, _or_ c
+** - matches nested directories - a/**/z matches
+
+### Tagging (adding information to log info of commit)
+# Create and Display Tag
+git tag -a v1.0 -m 'some tag message'
+git tag
+git log --decorate
+
+# Delete a Tag
+git tag -d v1.0
+
+# Add a Tag to Old Commit
+git tag -a v1.0 a87984
+
+
+
+### Branching
+git branch (lists branches in repo)
+git branch sidebar (creates branch named sidebar)
+git checkout sidebar (switch to sidebar branch)
+git log --oneline --decorate (show log and see branch info)
+git branch alt-sidebar-loc a87984 (create a branch named 'alt-sidebar-loc' pointed at a specific commit)
+
+# Delete a Branch
+git checkout master
+git branch -d sidebar
+
+# Recreate It
+git branch sidebar
+
+# Create and Checkout Branch
+git checkout -b footer master
+
+# See All Branches at Once
+git log --oneline --decorate --graph --all
+
+
+### Merging
+# fyi... to undo a merge performed on wrong branch: "git reset --hard HEAD^"
+git merge footer
+
+
+### Undoing Changes (e.g. git commit --amend, git revert, git reset)
+git commit --amend (make changes to previous commit)
+git revert <SHA-of-commit-to-revert> (revert specific SHA commit)
+git revert 1956b45 -m 'revert a commit'
+
+# Resetting (basically never do this... it erases commits)
+# before resetting, create a backup
+git branch backup
+git remote set-url origin https://github.com/OlivierNDO/Udacity_Version_Control_With_Git
+git remote add origin https://github.com/OlivierNDO/Udacity_Version_Control_With_Git.git
+git push -u origin master
+
